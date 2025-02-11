@@ -8,12 +8,16 @@
   }
 }
 
-[data-theme="autum"] {
+[data-theme="cupcake"] {
   .list-a {
     background-color: #ffffff;
   }
   .list-a:hover {
-    background-color: #ffffff;
+    background-color: #fdfdfd;
+  }
+
+  .amount {
+    background-color: #252945;
   }
 }
 [data-theme="night"] {
@@ -22,5 +26,15 @@
   }
   .list-a:hover {
     background-color: #1e2139;
+  }
+  .amount {
+    background-color: #0c0e16;
+  }
+
+  .title {
+    background-color: #252945;
+  }
+  .buttons{
+    background-color: #252945;
   }
 }

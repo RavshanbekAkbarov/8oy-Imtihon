@@ -1,6 +1,5 @@
 import { FaCirclePlus } from "react-icons/fa6";
 import CardTitle from "../components/CardTitle";
-import Abouttitle from "../components/Abouttitle";
 function Home() {
   return (
     <div className=" flex flex-col mx-auto mt-20 align-elements ">

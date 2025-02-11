@@ -3,13 +3,13 @@ import { IoMdSunny } from "react-icons/io";
 import { BsMoonFill } from "react-icons/bs";
 
 const themeFromLocatStorage = () => {
-  return localStorage.getItem("theme") || "autumn";
+  return localStorage.getItem("theme") || "cupcake";
 };
 
 const Navbar = () => {
   const [theme, setTheme] = useState(themeFromLocatStorage());
   const toggleTheme = () => {
-    const newTheme = theme == "autumn" ? "night" : "autumn";
+    const newTheme = theme == "cupcake" ? "night" : "cupcake";
     setTheme(newTheme);
   };
   useEffect(() => {
@@ -18,7 +18,7 @@ const Navbar = () => {
   }, [theme]);
 
   return (
-    <div className="fixed left-0 top-0 bottom-0 w-[103px] bg-[#373B53] dark:bg-[#1E2139] flex flex-col justify-between rounded-r-[20px] z-10 transition-colors duration-300">
+    <div className=" left-0 top-0 bottom-0 w-[103px] bg-dark2 flex flex-col justify-between rounded-r-[20px] z-10 transition-colors duration-300">
       <div className="relative h-[103px] bg-[#7C5DFA] rounded-r-[20px] overflow-hidden">
         <div className="absolute bottom-0 left-0 right-0 h-[51.5px] bg-[#9277FF] rounded-tl-[20px]" />
       </div>

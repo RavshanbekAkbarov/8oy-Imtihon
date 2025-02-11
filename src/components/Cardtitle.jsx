@@ -1,13 +1,12 @@
 import { BiChevronRight } from "react-icons/bi";
 
-import { useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 
 function CardTitle({ id, name, date, amount, status }) {
-  const navigate = useNavigate();
   return (
-    <div
-      className="flex justify-between w-full  "
-      onClick={() => navigate("/about")}
+    <Link
+      to={`/about/${id}`}
+      className="flex justify-between w-full"
     >
       <div className="flex items-center gap-10">
         <span className="font-bold">{id}</span>
@@ -40,7 +39,7 @@ function CardTitle({ id, name, date, amount, status }) {
           <BiChevronRight />
         </span>
       </div>
-    </div>
+    </Link>
   );
 }
 export default CardTitle;

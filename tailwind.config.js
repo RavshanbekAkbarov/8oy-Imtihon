@@ -1,4 +1,3 @@
-/** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
@@ -11,6 +10,7 @@ export default {
         light1: "#DFE3FA",
         light2: "#888EB0",
         light3: "#7E88C3",
+        light4: "#F9FAFE",
         black1: "#0C0E16",
         danger1: "#EC5757",
         danger2: "#FF9797",
@@ -21,6 +21,6 @@ export default {
   },
   plugins: [require("daisyui")],
   daisyui: {
-    themes: ["night", "autumn"],
+    themes: ["night", "cupcake"],
   },
 };
