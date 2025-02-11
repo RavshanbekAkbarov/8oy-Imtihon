@@ -1,6 +1,9 @@
 import { FaCirclePlus } from "react-icons/fa6";
 import CardTitle from "../components/CardTitle";
+import HomeDrawer from "../components/HomeDrewer";
+import { useState } from "react";
 function Home() {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div className=" flex flex-col mx-auto mt-20 align-elements ">
       <div className="flex justify-between items-center mb-[65px]">
@@ -17,7 +20,10 @@ function Home() {
               <option>Draft</option>
             </select>
           </div>
-          <button className="bg-primary text-white font-semibold text-[14px] flex items-center px-4 py-3 rounded-full gap-3 shadow-md">
+          <button
+            className="bg-primary text-white font-semibold text-[14px] flex items-center px-4 py-3 rounded-full gap-3 shadow-md"
+            onClick={() => setIsOpen(true)}
+          >
             <FaCirclePlus className="text-3xl" />
             New Invoice
           </button>
@@ -111,6 +117,7 @@ function Home() {
           </div>
         ))}
       </div>
+      <HomeDrawer isOpen={isOpen} setIsOpen={setIsOpen} />
     </div>
   );
 }

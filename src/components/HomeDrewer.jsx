@@ -1,6 +1,6 @@
 import { FaTrash } from "react-icons/fa6";
 
-function EditDrawer({ isOpen, setIsOpen }) {
+function HomeDrawer({ isOpen, setIsOpen }) {
   return (
     <div
       className={`fixed top-0 left-0 h-full w-full bg-black bg-opacity-50   ${
@@ -10,10 +10,7 @@ function EditDrawer({ isOpen, setIsOpen }) {
       <div className="list-a ml-24 md:w-[620px] h-full p-12 shadow-lg amount overflow-y-auto max-h-screen">
         <button onClick={() => setIsOpen(false)}></button>
 
-        <h1 className="text-2xl font-bold mb-12 ">
-          Edit
-          <span className="text-light3">#</span>XM9141
-        </h1>
+        <h1 className="text-2xl font-bold mb-12 ">New Invoice</h1>
 
         <div className="">
           <h3 className="text-primary text-sm font-bold mb-4">Bill From</h3>
@@ -112,7 +109,7 @@ function EditDrawer({ isOpen, setIsOpen }) {
               <label className="label">Project Description</label>
               <input
                 type="date"
-                className="select-field buttonsdate text-light3"
+                className="select-field buttons"
                 defaultValue="Graphic Design"
               />
             </div>
@@ -139,18 +136,18 @@ function EditDrawer({ isOpen, setIsOpen }) {
 
           <div>
             <h2 className=" font-bold text-light2  mb-4 text-xl">Item List</h2>
-            <div className=" flex  gap-4  mb-5 w-[520px] text-light2  items-center rounded-t-lg  ">
+            <div className=" flex  gap-4  mb-5 w-[520px]   items-center rounded-t-lg  ">
               <div className=" ">
                 <span className="block font-normal mb-5 text-sm ">
                   Item Name
                 </span>
                 <input
-                  className="select-field  buttons mb-5 "
-                  placeholder="Item Name"
+                  className="select-field text-black  buttons mb-5 "
+                  defaultValue="Graphic Design"
                 />
                 <input
-                  className="select-field buttons  "
-                  placeholder="Item Name"
+                  className="select-field listItem buttons  "
+                  defaultValue="Graphic Design"
                 />
               </div>
               <div className="flex  text-base gap-5">
@@ -159,32 +156,32 @@ function EditDrawer({ isOpen, setIsOpen }) {
                   <input
                     type="text"
                     className="select-field  buttons text-center mb-5"
-                    placeholder="1"
+                    defaultValue="1"
                   />
                   <input
                     type="text"
                     className="select-field buttons text-center"
-                    placeholder="1"
+                    defaultValue="1"
                   />
                 </div>
-                <div className=" w-[100px]  text-start">
+                <div className=" w-[100px]   text-start">
                   <span className="block font-normal text-sm mb-5">Price</span>
                   <input
                     type="text"
                     className="select-field buttons mb-5"
-                    placeholder="Price"
+                    defaultValue="Price"
                   />
                   <input
                     type="text"
                     className="select-field buttons"
-                    placeholder="Price"
+                    defaultValue="Price"
                   />
                 </div>
                 <div className=" text-right ">
                   <span className="block font-normal  text-start text-sm  mb-8">
                     Total
                   </span>
-                  <span className=" flex gap-6 font-bold  mb-12">
+                  <span className=" flex gap-6 font-bold   mb-12">
                     £156.00
                     <button>
                       <FaTrash className="text-gray-400 hover:text-red-500" />
@@ -205,16 +202,23 @@ function EditDrawer({ isOpen, setIsOpen }) {
             </button>
           </div>
 
-          <div className="flex justify-end gap-3 font-bold text-sm mt-10">
-            <button
-              onClick={() => setIsOpen(false)}
-              className="bg-light1 title text-light2 px-6 py-4 rounded-3xl"
-            >
-              Cancel
-            </button>
-            <button className="bg-primary text-bgLight px-6 py-4 rounded-3xl">
-              Save Changes
-            </button>
+          <div className="flex justify-between  items-center font-bold text-sm mt-10">
+            <div>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="bg-bgLight  text-light2 px-6 py-3 rounded-3xl"
+              >
+                Discard
+              </button>
+            </div>
+            <div className="">
+              <button className="bg-light2 text-light1 px-6 py-3 rounded-3xl mr-2">
+                Save as Draft
+              </button>
+              <button className="bg-primary text-bgLight px-6 py-3 rounded-3xl">
+                Save & Send
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -222,4 +226,4 @@ function EditDrawer({ isOpen, setIsOpen }) {
   );
 }
 
-export default EditDrawer;
+export default HomeDrawer;

@@ -8,6 +8,14 @@
   }
 }
 
+.select-field {
+  @apply w-full p-3 rounded-sm  font-bold border border-[#52566c] bg-inherit cursor-pointer;
+}
+
+.label {
+  @apply block font-normal text-light2 text-sm mb-1;
+}
+
 [data-theme="cupcake"] {
   .list-a {
     background-color: #ffffff;
@@ -17,24 +25,31 @@
   }
 
   .amount {
-    background-color: #252945;
+    background-color: #ffffff;
   }
+
+  
 }
 [data-theme="night"] {
   .list-a {
     background-color: #1e2139;
   }
-  .list-a:hover {
+  /* .list-a:hover {
     background-color: #1e2139;
-  }
+  } */
+
   .amount {
-    background-color: #0c0e16;
+    background-color: #141625;
   }
 
   .title {
     background-color: #252945;
   }
-  .buttons{
+  .buttons {
     background-color: #252945;
   }
+  .buttonsdate {
+    background-color: #1e2139;
+  }
+ 
 }

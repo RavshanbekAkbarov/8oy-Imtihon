@@ -6,7 +6,7 @@ function About() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="w-[770px]  align-elements ">
+    <div className="w-[770px]   align-elements ">
       <span
         className="flex items-center  cursor-pointer gap-5 font-bold mb-8 "
         onClick={() => navigate("/")}
@@ -39,8 +39,8 @@ function About() {
             </button>
           </div>
         </div>
-        <div className="p-12 rounded-lg list-a ">
-          <div className="flex justify-between mt-12">
+        <div className="p-8 rounded-lg list-a overflow-y-auto h-[450px]">
+          <div className="flex justify-between ">
             <div>
               <h2 className="text-lg font-bold mb-2">
                 <span className="text-light3">#</span>XM9141
