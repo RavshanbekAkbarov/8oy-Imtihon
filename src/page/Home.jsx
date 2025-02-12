@@ -1,5 +1,5 @@
 import { FaCirclePlus } from "react-icons/fa6";
-import Cardtitle from "../components/CardTitle.jsx";
+import Cardtitle from "../components/Cardtitle";
 import HomeDrawer from "../components/HomeDrewer";
 import { useState } from "react";
 function Home() {
