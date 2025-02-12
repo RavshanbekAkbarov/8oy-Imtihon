@@ -2,18 +2,22 @@ import { FaCirclePlus } from "react-icons/fa6";
 import Cardtitle from "../components/Cardtitle";
 import HomeDrawer from "../components/HomeDrewer";
 import { useState } from "react";
+import { useFetch } from "../hooks/useFetch";
+
 function Home() {
   const [isOpen, setIsOpen] = useState(false);
+  const { data } = useFetch();
   return (
-    <div className=" flex flex-col mx-auto mt-20 align-elements ">
-      <div className="flex justify-between items-center mb-[65px]">
+    <div className=" flex flex-col mx-auto mt-16 align-elements ">
+      <div className="flex justify-between items-center mb-[55px]">
         <div>
           <h1 className="text-[32px] font-bold">Invoices</h1>
-          <p className="text-[12px]">There are 7 total invoices</p>
+          {data ? `There are 7 total invoices` : `No Invoices`}
+          {/* <p className="text-[12px]">There are 7 total invoices</p> */}
         </div>
         <div className="flex items-center space-x-4">
           <div className="relative">
-            <select className="select w-full max-w-xs bg-inherit font-semibold border-none">
+            <select className="select w-full  font-semibold border-none">
               <option>Filter by status</option>
               <option>Paid</option>
               <option>Pending</option>
@@ -30,92 +34,8 @@ function Home() {
         </div>
       </div>
 
-      <div className="max-h-[450px] overflow-y-auto space-y-4 pr-2">
-        {[
-          {
-            id: "#RT3080",
-            date: "Due 19 Aug 2021",
-            name: "Jensen Huang",
-            amount: "£1,800.90",
-            status: "Paid",
-          },
-          {
-            id: "#XM9141",
-            date: "Due 20 Sep 2021",
-            name: "Alex Grim",
-            amount: "£556.00",
-            status: "Pending",
-          },
-          {
-            id: "#RG0314",
-            date: "Due 01 Oct 2021",
-            name: "John Morrison",
-            amount: "£14,002.33",
-            status: "Paid",
-          },
-          {
-            id: "#RT2080",
-            date: "Due 12 Oct 2021",
-            name: "Alysa Werner",
-            amount: "£102.04",
-            status: "Pending",
-          },
-          {
-            id: "#FV2353",
-            date: "Due 12 Nov 2021",
-            name: "Anita Wainwright",
-            amount: "£3,102.04",
-            status: "Draft",
-          },
-          {
-            id: "#FV2353",
-            date: "Due 12 Nov 2021",
-            name: "Anita Wainwright",
-            amount: "£3,102.04",
-            status: "Draft",
-          },
-          {
-            id: "#FV2353",
-            date: "Due 12 Nov 2021",
-            name: "Anita Wainwright",
-            amount: "£3,102.04",
-            status: "Draft",
-          },
-          {
-            id: "#FV2353",
-            date: "Due 12 Nov 2021",
-            name: "Anita Wainwright",
-            amount: "£3,102.04",
-            status: "Draft",
-          },
-          {
-            id: "#FV2353",
-            date: "Due 12 Nov 2021",
-            name: "Anita Wainwright",
-            amount: "£3,102.04",
-            status: "Paid",
-          },
-          {
-            id: "#FV2353",
-            date: "Due 12 Nov 2021",
-            name: "Anita Wainwright",
-            amount: "£3,102.04",
-            status: "Draft",
-          },
-        ].map((data) => (
-          <div
-            key={data.id}
-            className="flex items-center justify-between p-4 rounded-lg shadow-md cursor-pointer list-a "
-          >
-            <Cardtitle
-              id={data.id}
-              date={data.date}
-              name={data.name}
-              amount={data.amount}
-              status={data.status}
-            />
-          </div>
-        ))}
+      <div className="max-h-[450px] overflow-y-auto space-y-4 ">
+        <Cardtitle />
       </div>
       <HomeDrawer isOpen={isOpen} setIsOpen={setIsOpen} />
     </div>

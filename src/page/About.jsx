@@ -2,8 +2,11 @@ import { GoChevronLeft } from "react-icons/go";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import EditDrawer from "../components/EditDrawer";
+import { useFetch } from "../hooks/useFetch";
+
 function About() {
   const navigate = useNavigate();
+  const { data } = useFetch();
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="w-[770px]   align-elements ">
@@ -19,10 +22,31 @@ function About() {
         <div className="flex  justify-between items-center list-a mb-6 rounded-lg  px-8 py-5 ">
           <div className="flex  items-center   gap-4">
             <h3 className="text-[14px] text-light3 font-normal">Status</h3>
-            <span className="font-semibold text-amber-500 bg-yellow-700 bg-opacity-10 px-3 py-2 w-[104px]  rounded-md flex items-center justify-center">
-              <span className="w-2 h-2 font-bold text-sm rounded-full mr-2 bg-yellow-500"></span>
-              Pending
-            </span>
+{/* 
+            <span
+              className={`font-semibold px-3 py-2 w-[104px] rounded-md flex items-center justify-center ${
+                data.status.toLowerCase() === "paid"
+                  ? "text-green-500 bg-green-900 bg-opacity-20"
+                  : data.status.toLowerCase() === "pending"
+                  ? "text-amber-500 bg-yellow-700 bg-opacity-10"
+                  : "text-gray-500 bg-gray-700 bg-opacity-10"
+              }`}
+            >
+              <span
+                className={`w-2 h-2 rounded-full mr-2 ${
+                  data.status.toLowerCase() === "paid"
+                    ? "bg-green-500"
+                    : res.status.toLowerCase() === "pending"
+                    ? "bg-yellow-500"
+                    : "bg-gray-500"
+                }`}
+              ></span>
+              {res.status.charAt(0).toUpperCase() + res.status.slice(1)}
+            </span> */}
+{/* 
+            <span className="text-primary cursor-pointer text-xl">
+              <BiChevronRight />
+            </span> */}
           </div>
           <div className="flex justify-end gap-2 font-semibold text-bgLight">
             <button
@@ -39,7 +63,7 @@ function About() {
             </button>
           </div>
         </div>
-        <div className="p-8 rounded-lg list-a overflow-y-auto h-[450px]">
+        <div className="p-8 rounded-lg list-a overflow-y-auto h-[460px]">
           <div className="flex justify-between ">
             <div>
               <h2 className="text-lg font-bold mb-2">
@@ -119,7 +143,7 @@ function About() {
               </div>
             </div>
           </div>
-          <div className=" amount flex justify-between  items-center  p-6 rounded-b-lg ">
+          <div className=" amount-about flex justify-between  items-center  p-6 rounded-b-lg ">
             <p className="  font-normal   text-bgLight">Amount Due</p>
             <p className=" font-bold text-3xl   text-bgLight">£556.00</p>
           </div>

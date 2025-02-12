@@ -4,17 +4,17 @@
 
 @layer components {
   .align-elements {
-    @apply max-w-4xl mx-auto px-5 w-full mt-16;
+    @apply max-w-3xl mx-auto px-5 w-full mt-8;
   }
 }
 
 .select-field {
-  @apply w-full p-3 rounded-sm  font-bold border border-[#52566c] bg-inherit cursor-pointer;
+  @apply w-full p-3 rounded-md  font-bold border border-[#52566c] bg-inherit cursor-pointer;
 }
 
-.label {
-  @apply block font-normal text-light2 text-sm mb-1;
-}
+/* .label {
+  @apply block font-normal text-light1 text-sm mb-1;
+} */
 
 [data-theme="cupcake"] {
   .list-a {
@@ -23,13 +23,25 @@
   .list-a:hover {
     background-color: #fdfdfd;
   }
+  .title {
+    background-color: #e9ecf9;
+  }
 
   .amount {
+    background-color: #f8f8fb;
+  }
+  .amount-about {
+    background-color: #252945;
+  }
+  .buttons-bottom {
     background-color: #ffffff;
   }
 
-  
+  .label {
+    @apply block font-normal text-light3 text-sm mb-1;
+  }
 }
+
 [data-theme="night"] {
   .list-a {
     background-color: #1e2139;
@@ -39,17 +51,26 @@
   } */
 
   .amount {
-    background-color: #141625;
+    background-color: #131523;
+  }
+  .amount-about {
+    background-color: #0e0e0e;
   }
 
   .title {
     background-color: #252945;
   }
   .buttons {
-    background-color: #252945;
+    background-color: #1d1f34;
   }
   .buttonsdate {
     background-color: #1e2139;
   }
- 
+  .buttons-bottom {
+    background-color: #15182a;
+  }
+
+  .label {
+    @apply block font-normal text-light1 text-sm mb-1;
+  }
 }

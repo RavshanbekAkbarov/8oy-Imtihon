@@ -19,7 +19,7 @@ export default {
       },
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [require("daisyui", "tailwind-scrollbar")],
   daisyui: {
     themes: ["night", "cupcake"],
   },

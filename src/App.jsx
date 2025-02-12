@@ -7,7 +7,7 @@ import MaineLayout from "./layout/MaineLayout";
 import About from "./page/About";
 import Home from "./page/Home";
 
-function App()  {
+function App() {
   const routes = createBrowserRouter([
     {
       path: "/",
@@ -18,7 +18,7 @@ function App()  {
           element: <Home />,
         },
         {
-          path: "/about",
+          path: "/about/:id",
           element: <About />,
         },
       ],
