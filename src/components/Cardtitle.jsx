@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 function Cardtitle() {
   const { data } = useFetch();
-  console.log(data);
 
   if (!data) return <p>Loading....</p>;
 
