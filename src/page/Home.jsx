@@ -1,5 +1,5 @@
 import { FaCirclePlus } from "react-icons/fa6";
-import CardTitle from "../components/CardTitle.jsx";
+import Cardtitle from "../components/CardTitle.jsx";
 import HomeDrawer from "../components/HomeDrewer";
 import { useState } from "react";
 function Home() {
@@ -107,7 +107,7 @@ function Home() {
             key={data.id}
             className="flex items-center justify-between p-4 rounded-lg shadow-md cursor-pointer list-a "
           >
-            <CardTitle
+            <Cardtitle
               id={data.id}
               date={data.date}
               name={data.name}

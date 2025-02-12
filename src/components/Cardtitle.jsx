@@ -1,13 +1,10 @@
 import { BiChevronRight } from "react-icons/bi";
 
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
-function CardTitle({ id, name, date, amount, status }) {
+function Cardtitle({ id, name, date, amount, status }) {
   return (
-    <Link
-      to={`/about/${id}`}
-      className="flex justify-between w-full"
-    >
+    <Link to={`/about/${id}`} className="flex justify-between w-full">
       <div className="flex items-center gap-10">
         <span className="font-bold">{id}</span>
         <span className="text-gray-500">{date}</span>
@@ -42,4 +39,4 @@ function CardTitle({ id, name, date, amount, status }) {
     </Link>
   );
 }
-export default CardTitle;
+export default Cardtitle;
