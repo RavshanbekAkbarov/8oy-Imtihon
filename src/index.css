@@ -12,10 +12,6 @@
   @apply w-full p-3 rounded-md  font-bold border border-[#52566c] bg-inherit cursor-pointer;
 }
 
-/* .label {
-  @apply block font-normal text-light1 text-sm mb-1;
-} */
-
 [data-theme="cupcake"] {
   .list-a {
     background-color: #ffffff;
