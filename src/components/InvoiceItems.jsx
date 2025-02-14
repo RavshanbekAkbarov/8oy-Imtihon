@@ -15,8 +15,8 @@ const InvoiceItems = ({ items }) => {
         >
           <span className="text-left">{item.name}</span>
           <span className="text-end text-light2 ">{item.quantity}</span>
-          <span className="text-end text-light2">£{item.price}</span>
-          <span className="text-right">£{item.quantity * item.price}</span>
+          <span className="text-end text-light2">£{item.price.toFixed(2)}</span>
+          <span className="text-right">£{item.total.toFixed(2)}</span>
         </div>
       ))}
     </div>

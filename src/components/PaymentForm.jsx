@@ -1,26 +1,30 @@
 import { useState } from "react";
 
-const PaymentForm = ({ product }) => {
+const PaymentForm = ({ data }) => {
   const [selectedTerm, setSelectedTerm] = useState(
-    product?.paymentTerms || "Net 30 Days"
+    data?.paymentTerms || "Net 30 Days"
   );
 
   return (
     <div className="grid grid-cols-2 gap-6 mb-6">
       <div className="w-full">
-        <label className="label">Project Date</label>
+        <label className="label" htmlFor="Invoice Date">
+          Project Date
+        </label>
         <input
-        placeholder="2021-08-21"
-          type="text"   
-          name="createdAt"
-          inputName="createdAt"
+          type="date"
+          name="invoiceDate"
+          id="Invoice Date"
           className="select-field buttonsdate text-light3"
         />
       </div>
 
       <div className="w-full">
-        <label className="label">Payment Terms</label>
+        <label className="label" htmlFor="paymentTerms">
+          Payment Terms
+        </label>
         <select
+          id="paymentTerms"
           className="w-full p-[14px] rounded-sm font-bold border border-[#52566c] bg-inherit cursor-pointer buttons"
           value={selectedTerm}
           onChange={(e) => setSelectedTerm(e.target.value)}

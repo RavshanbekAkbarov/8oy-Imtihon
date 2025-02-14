@@ -1,18 +1,35 @@
 import { FaCirclePlus } from "react-icons/fa6";
 import Cardtitle from "../components/Cardtitle";
-import HomeDrawer from "../components/HomeDrewer";
-import { useState } from "react";
-import { useFetch } from "../hooks/useFetch";
+import CreateInvoice from "../components/CreateInvoice";
+import { useEffect, useState } from "react";
+import { getAllData } from "../hooks/useFetch";
 
 function Home() {
   const [isOpen, setIsOpen] = useState(false);
-  const { data } = useFetch();
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    setLoading(true);
+    getAllData()
+      .then((res) => {
+        setData(res);
+      })
+      .catch(() => {})
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return <p> Loading....</p>;
+  }
+
   return (
     <div className=" flex flex-col mx-auto mt-14 align-elements ">
       <div className="flex justify-between items-center mb-[55px]">
         <div>
           <h1 className="text-[32px] font-bold">Invoices</h1>
-          {data ? `There are 7 total invoices` : `No Invoices`}
+          <p>There are {data ? data.length : 0} total invoice</p>
         </div>
         <div className="flex items-center space-x-4">
           <div className="relative">
@@ -33,10 +50,10 @@ function Home() {
         </div>
       </div>
 
-      <div className="max-h-[520px] overflow-y-auto space-y-4 ">
+      <div className="max-h-[500px] overflow-y-auto space-y-4 ">
         <Cardtitle />
       </div>
-      <HomeDrawer isOpen={isOpen} setIsOpen={setIsOpen} />
+      <CreateInvoice isOpen={isOpen} setIsOpen={setIsOpen} />
     </div>
   );
 }

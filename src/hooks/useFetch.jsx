@@ -1,17 +1,16 @@
-import { useEffect, useState } from "react";
-
-export const useFetch = () => {
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const req = await fetch("http://localhost:3000/data");
-      const data = await req.json();
-      setData(data);
-    };
-
-    fetchData();
-  }, []);
-
-  return { data };
-};
+export async function getAllData() {
+  const req = await fetch("http://localhost:3000/data");
+  if (req.status === 200) {
+    return await req.json();
+  } else {
+    throw new Error("Hatolik yuz berdi");
+  }
+}
+export async function getOneData(id) {
+  const req = await fetch(`http://localhost:3000/data/${id}`);
+  if (req.status === 200) {
+    return await req.json();
+  } else {
+    throw new Error("Hatolik yuz berdi");
+  }
+}

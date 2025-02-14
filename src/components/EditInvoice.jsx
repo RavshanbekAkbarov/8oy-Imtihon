@@ -1,11 +1,39 @@
 import { FaTrash } from "react-icons/fa6";
 import PaymentForm from "./PaymentForm";
-import useProduct from "../hooks/useProduct";
 import FormInput from "./FormInput";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { getOneData } from "../hooks/useFetch";
 
-function EditDrawer() {
-  const { loading, product } = useProduct();
-  if (loading) return <p>Loading....</p>;
+function EditInvoice() {
+  const { id } = useParams();
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState(null);
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    setLoading(true);
+    getOneData(id)
+      .then((res) => {
+        setData(res);
+        setItems(res.items);
+      })
+      .catch(() => {})
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [id]);
+
+  if (loading) {
+    return <p> Loading....</p>;
+  }
+  const addNewItem = () => {
+    setItems([...items, { name: "", qty: 1, price: 0, total: 0 }]);
+  };
+
+  const removeItem = (index) => {
+    setItems((prevItems) => prevItems.filter((_, i) => i !== index));
+  };
 
   return (
     <div className="drawer">
@@ -17,7 +45,6 @@ function EditDrawer() {
             <h1 className="text-2xl font-bold mb-12 ">
               Edit
               <span className="text-light3">#</span>
-              {product.id}
             </h1>
 
             <div className="">
@@ -26,7 +53,7 @@ function EditDrawer() {
                 type="text"
                 name="streetAddress"
                 inputName="Street Address"
-                placeholder={product?.senderAddress?.street}
+                defaultValue={data?.senderAddress.street}
               />
 
               <div className="grid grid-cols-3 gap-4 mb-12">
@@ -34,19 +61,19 @@ function EditDrawer() {
                   type="text"
                   name="city"
                   inputName="City"
-                  placeholder={product?.senderAddress?.city}
+                  defaultValue={data?.senderAddress?.city}
                 />
                 <FormInput
                   type="text"
                   name="postCode"
                   inputName="Post Code"
-                  placeholder={product?.senderAddress?.postCode}
+                  defaultValue={data?.senderAddress?.postCode}
                 />
                 <FormInput
                   type="text"
                   name="country"
                   inputName="Country"
-                  placeholder={product?.senderAddress?.country}
+                  defaultValue={data?.senderAddress?.country}
                 />
               </div>
 
@@ -55,19 +82,19 @@ function EditDrawer() {
                 type="text"
                 name="clientName"
                 inputName="Client's Name"
-                placeholder={product?.clientName}
+                defaultValue={data?.clientName}
               />
               <FormInput
                 type="email"
                 name="clientEmail"
                 inputName="Client's Email"
-                placeholder={product?.clientEmail}
+                defaultValue={data?.clientEmail}
               />
               <FormInput
                 type="text"
                 name="clientStreetAddress"
                 inputName="Street Address"
-                placeholder={product?.clientAddress?.street}
+                defaultValue={data?.clientAddress?.street}
               />
 
               <div className="grid grid-cols-3 gap-4 mb-4">
@@ -75,28 +102,28 @@ function EditDrawer() {
                   type="text"
                   name="clientCity"
                   inputName="City"
-                  placeholder={product?.clientAddress?.city}
+                  defaultValue={data?.clientAddress?.city}
                 />
                 <FormInput
                   type="text"
                   name="clientPostCode"
                   inputName="Post Code"
-                  placeholder={product?.clientAddress?.postCode}
+                  defaultValue={data?.clientAddress?.postCode}
                 />
                 <FormInput
                   type="text"
                   name="clientCountry"
                   inputName="Country"
-                  placeholder={product?.clientAddress?.country}
+                  defaultValue={data?.clientAddress?.country}
                 />
               </div>
 
-              <PaymentForm product={product} />
+              <PaymentForm data={data} />
               <FormInput
                 type="text"
                 name="projectDescription"
                 inputName="Project Description"
-                placeholder={product?.description}
+                defaultValue={data?.description}
               />
               <h3 className="text-light2 text-lg font-bold mb-4 mt-8">
                 Item List
@@ -109,35 +136,47 @@ function EditDrawer() {
                 <span className="text-center">Total</span>
               </div>
 
-              <div className="flex items-center gap-4 mb-5  rounded-md w-full ">
-                <input
-                  type="text"
-                  defaultValue="Email Design"
-                  className="  select-field buttons"
-                />
+              {items.map((item, index) => (
+                <div
+                  key={index}
+                  className="flex items-center gap-4 mb-5  rounded-md w-full "
+                >
+                  <input
+                    type="text"
+                    name="itemName"
+                    defaultValue={item.name}
+                    className="  select-field buttons"
+                  />
 
-                <input
-                  type="text"
-                  defaultValue="2"
-                  className=" w-[70px] text-center p-3 rounded-sm buttons  font-bold border border-[#52566c] bg-inherit cursor-pointer"
-                />
+                  <input
+                    type="number"
+                    name="quantity"
+                    defaultValue={item.quantity}
+                    className=" w-[70px] text-center p-3 rounded-sm buttons  font-bold border border-[#52566c] bg-inherit cursor-pointer"
+                  />
 
-                <input
-                  type="text"
-                  defaultValue="200.00"
-                  className=" w-[125px] text-center p-3 rounded-sm  buttons  font-bold border border-[#52566c] bg-inherit cursor-pointer"
-                />
+                  <input
+                    type="text"
+                    name="price"
+                    defaultValue={item.price.toFixed(2)}
+                    className=" w-[125px] text-center p-3 rounded-sm  buttons  font-bold border border-[#52566c] bg-inherit cursor-pointer"
+                  />
 
-                <span className="text-light2 font-bold text-base  text-right">
-                  400.00
-                </span>
+                  <span className="text-light2  w-[120px] font-bold text-base  text-right">
+                    £{item.total.toFixed(2)}
+                  </span>
 
-                <button className="text-gray-400 text-lg hover:text-red-500 transition">
-                  <FaTrash />
-                </button>
-              </div>
+                  <button className="text-gray-400 text-lg hover:text-red-500 transition">
+                    <FaTrash onClick={() => removeItem(index)} />
+                  </button>
+                </div>
+              ))}
 
-              <button className="bg-bgLight text-light2 w-full title font-semibold px-6 py-4 rounded-[30px]">
+              <button
+                className="bg-bgLight text-light2 w-full title font-semibold px-6 py-4 rounded-[30px]"
+                type="button"
+                onClick={addNewItem}
+              >
                 + Add New Item
               </button>
             </div>
@@ -150,9 +189,12 @@ function EditDrawer() {
               >
                 Cancel
               </label>
-              <button className="bg-primary text-bgLight px-6 py-4 rounded-3xl">
+              <label
+                htmlFor="edit-drawer"
+                className="bg-primary cursor-pointer text-bgLight px-6 py-4 rounded-3xl"
+              >
                 Save Changes
-              </button>
+              </label>
             </div>
           </div>
         </div>
@@ -161,4 +203,4 @@ function EditDrawer() {
   );
 }
 
-export default EditDrawer;
+export default EditInvoice;

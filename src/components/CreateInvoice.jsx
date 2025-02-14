@@ -1,51 +1,90 @@
 import { FaTrash } from "react-icons/fa6";
 import PaymentForm from "./PaymentForm";
-import useProduct from "../hooks/useProduct";
 import FormInput from "./FormInput";
-import { Form } from "react-router-dom";
-import { useRef, useState } from "react";
+import { Form, useParams } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
 import { objectCreater } from "../utils/object-creater";
+import { getOneData } from "../hooks/useFetch";
 
-function HomeDrawer() {
-  const { loading, product } = useProduct();
+function CreateInvoice() {
+  const { id } = useParams();
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
   const drawerRef = useRef(null);
   const formRef = useRef(null);
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState([
+    { name: "", qty: 1, price: 0, total: 0 },
+  ]);
+
+  useEffect(() => {
+    if (!id) {
+      setLoading(false);
+      return;
+    }
+
+    getOneData(id)
+      .then((res) => {
+        if (res) {
+          setData(res);
+        } else {
+          setError("Ma'lumot topilmadi!");
+        }
+      })
+      .catch((err) => {
+        console.error("API xatoligi!", err);
+        setError("API xatoligi!");
+      })
+      .finally(() => setLoading(false));
+  }, [id]);
+
+  if (loading) return <p> Loading....</p>;
+  if (error) return <p>{error}</p>;
 
   const handleDiscard = () => {
     if (drawerRef.current) {
-      drawerRef.current.checked = false;
+      setTimeout(() => {
+        drawerRef.current.checked = false;
+      }, 0);
     }
-    if (formRef.current) {
-      formRef.current.reset();
-    }
-    setItems([]);
+    if (formRef.current) formRef.current.reset();
+    setItems([{ name: "", qty: 1, price: 0, total: 0 }]);
   };
+
   const addNewItem = () => {
-    setItems([...items, { name: "", qty: 1, price: 0 }]);
+    setItems([...items, { name: "", qty: 1, price: 0, total: 0 }]);
   };
 
   const removeItem = (index) => {
+    setItems(items.filter((_, i) => i !== index));
+  };
+  const handleItemChange = (index, field, value) => {
     const newItems = [...items];
-    newItems.splice(index, 1);
+    newItems[index][field] = Number(value);
+    newItems[index].total = newItems[index].qty * newItems[index].price;
     setItems(newItems);
   };
+
+  const handleReload = () => {
+    window.location.reload();
+  };
+
   async function getFormData(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
-    console.log(formData);
     const data = Object.fromEntries(formData.entries());
-    const itemNames = formData.getAll("itemName");
-    const quantities = formData.getAll("qty");
-    const prices = formData.getAll("price");
-    const items = itemNames.map((name, index) => ({
+
+    const items = formData.getAll("itemName").map((name, index) => ({
       name,
-      quantity: Number(quantities[index]),
-      price: Number(prices[index]),
-      total: Number(prices[index]) * Number(quantities[index]),
+      quantity: Number(formData.getAll("qty")[index]),
+      price: Number(formData.getAll("price")[index]),
+      total:
+        Number(formData.getAll("qty")[index]) *
+        Number(formData.getAll("price")[index]),
     }));
-    const submitter = e.nativeEvent.submitter;
-    const status = submitter.dataset.status;
+
+    const status = e.nativeEvent.submitter.dataset.status;
+
     const invoiceData = objectCreater({
       createdAt: new Date().toISOString().split("T")[0],
       paymentDue: data.invoiceDate,
@@ -64,30 +103,34 @@ function HomeDrawer() {
       country: data.country,
       items,
     });
-    console.log("Yangi Invoice:", invoiceData);
+
     try {
       const response = await fetch("http://localhost:3000/data", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(invoiceData),
       });
-      if (!response.ok) {
+
+      if (!response.ok)
         throw new Error("Serverga ma'lumot yuborishda xatolik!");
-      }
-      const result = await response.json();
-      console.log("Yangi Invoice qo‘shildi:", result);
+
+      console.log("Yangi Invoice qo‘shildi:", await response.json());
+
+      handleDiscard();
+      handleReload();
     } catch (error) {
       console.error("Xatolik:", error);
     }
   }
-  if (loading) return <p>Loading....</p>;
 
   return (
     <div className="drawer">
-      <input id="edit-drawer" type="checkbox" className="drawer-toggle" />
-
+      <input
+        id="edit-drawer"
+        type="checkbox"
+        className="drawer-toggle"
+        ref={drawerRef}
+      />
       <div className="drawer-side">
         <label htmlFor="edit-drawer" className="drawer-overlay"></label>
 
@@ -169,14 +212,15 @@ function HomeDrawer() {
               />
             </div>
 
-            <PaymentForm product={product} />
+            <PaymentForm data={data} />
 
             <FormInput
               type="text"
               name="projectDescription"
               inputName="Project Description"
-              placeholder="Enter project description"
+              placeholder="project description"
             />
+
             <h3 className="text-light2 text-lg font-bold mb-4 mt-8">
               Item List
             </h3>
@@ -187,35 +231,55 @@ function HomeDrawer() {
               <span className="text-center">Price</span>
               <span className="text-center">Total</span>
             </div>
+
             {items.map((item, index) => (
               <div
                 key={index}
-                className="flex items-center gap-4 mb-5  rounded-md w-full "
+                className="flex items-center gap-4 mb-5 rounded-md w-full"
               >
                 <input
                   type="text"
-                  defaultValue="Email Design"
-                  className="  select-field buttons"
+                  name="itemName"
+                  placeholder="Item Name"
+                  value={item.name}
+                  onChange={(e) =>
+                    handleItemChange(index, "name", e.target.value)
+                  }
+                  className="select-field buttons"
                 />
 
                 <input
-                  type="text"
-                  defaultValue="2"
-                  className=" w-[70px] text-center p-3 rounded-sm buttons  font-bold border border-[#52566c] bg-inherit cursor-pointer"
+                  type="number"
+                  name="qty"
+                  placeholder="1"
+                  value={item.qty}
+                  min="1"
+                  onChange={(e) =>
+                    handleItemChange(index, "qty", e.target.value)
+                  }
+                  className="w-[70px] text-center p-3 rounded-sm buttons font-bold border border-[#52566c] bg-inherit cursor-pointer"
                 />
-
                 <input
                   type="text"
-                  defaultValue="200.00"
-                  className=" w-[125px] text-center p-3 rounded-sm  buttons  font-bold border border-[#52566c] bg-inherit cursor-pointer"
+                  name="price"
+                  placeholder="0"
+                  value={item.price}
+                  min="0"
+                  step="0.01"
+                  onChange={(e) =>
+                    handleItemChange(index, "price", e.target.value)
+                  }
+                  className="w-[125px] text-center p-3 rounded-sm buttons font-bold border border-[#52566c] bg-inherit cursor-pointer"
                 />
-
-                <span className="text-light2 font-bold text-base  text-right">
-                  400.00
+                <span className="text-light2 w-[120px] font-bold text-base text-right">
+                  £{item.total}
                 </span>
-
-                <button className="text-gray-400 text-lg hover:text-red-500 transition">
-                  <FaTrash onClick={() => removeItem(index)} />
+                <button
+                  className="text-gray-400 text-lg hover:text-red-500 transition"
+                  onClick={() => removeItem(index)}
+                  type="button"
+                >
+                  <FaTrash />
                 </button>
               </div>
             ))}
@@ -234,21 +298,22 @@ function HomeDrawer() {
               <label
                 htmlFor="edit-drawer"
                 className="bg-bgLight text-light2 px-6 py-3 cursor-pointer rounded-3xl"
+                onClick={handleDiscard}
               >
                 Discard
               </label>
               <div>
                 <button
                   className="bg-light2 text-light1 cursor-pointer px-6 py-3 rounded-3xl mr-2"
+                  data-status="draft"
                   type="submit"
-                  data-status="pending"
                 >
                   Save as Draft
                 </button>
                 <button
-                  className="bg-primary text-bgLight  cursor-pointer px-6 py-3 rounded-3xl"
-                  type="submit"
+                  className="bg-primary text-bgLight cursor-pointer px-6 py-3 rounded-3xl"
                   data-status="pending"
+                  type="submit"
                 >
                   Save & Send
                 </button>
@@ -261,4 +326,4 @@ function HomeDrawer() {
   );
 }
 
-export default HomeDrawer;
+export default CreateInvoice;
