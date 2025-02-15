@@ -262,10 +262,8 @@ function CreateInvoice() {
                 <input
                   type="number"
                   name="price"
-                  placeholder="0"
                   value={item.price}
-                  min="0"
-                  step="0.01"
+                  min="1"
                   onChange={(e) =>
                     handleItemChange(index, "price", e.target.value)
                   }

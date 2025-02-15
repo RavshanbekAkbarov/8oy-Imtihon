@@ -45,7 +45,7 @@ function Cardtitle() {
               <span className="  ">{item.clientName}</span>
             </div>
             <div className="flex items-center space-x-4">
-              <span className="font-bold  mr-5">£{item.total.toFixed(2)}</span>
+              <span className="font-bold  mr-5">£{item.total}</span>
               <StatusBadge status={item.status} />
 
               <span className="text-primary cursor-pointer text-xl">
