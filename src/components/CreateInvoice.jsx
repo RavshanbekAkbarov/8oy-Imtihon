@@ -70,7 +70,7 @@ function CreateInvoice() {
 
     const items = formData.getAll("itemName").map((name, index) => ({
       name,
-      quantity: Number(formData.getAll("qty")[index]),
+      qty: Number(formData.getAll("qty")[index]),
       price: Number(formData.getAll("price")[index]),
       total:
         Number(formData.getAll("qty")[index]) *
@@ -139,7 +139,7 @@ function CreateInvoice() {
             <h3 className="text-primary text-sm font-bold mb-4">Bill From</h3>
             <FormInput
               type="text"
-              name="streetAddress"
+              name="senderStreet"
               inputName="Street Address"
               placeholder="19 Union Terrace"
             />
@@ -147,19 +147,19 @@ function CreateInvoice() {
             <div className="grid grid-cols-3 gap-4 mb-12">
               <FormInput
                 type="text"
-                name="city"
+                name="senderCity"
                 inputName="City"
                 placeholder="London"
               />
               <FormInput
                 type="text"
-                name="postCode"
+                name="senderPostCode"
                 inputName="Post Code"
                 placeholder="E1 3EZ"
               />
               <FormInput
                 type="text"
-                name="country"
+                name="senderCountry"
                 inputName="Country"
                 placeholder="United Kingdom"
               />
@@ -167,8 +167,8 @@ function CreateInvoice() {
 
             <h3 className="text-primary text-sm font-bold mb-4">Bill To</h3>
             <FormInput
-              type="text"
               name="clientName"
+              type="text"
               inputName="Client's Name"
               placeholder="Alex Grim"
             />
@@ -180,7 +180,7 @@ function CreateInvoice() {
             />
             <FormInput
               type="text"
-              name="clientStreetAddress"
+              name="street"
               inputName="Street Address"
               placeholder="84 Church Way"
             />
@@ -188,13 +188,13 @@ function CreateInvoice() {
             <div className="grid grid-cols-3 gap-4 mb-4">
               <FormInput
                 type="text"
-                name="clientCity"
+                name="city"
                 inputName="City"
                 placeholder="Bradford"
               />
               <FormInput
                 type="text"
-                name="clientPostCode"
+                name="postCode"
                 inputName="Post Code"
                 placeholder="BD1 9PB"
               />

@@ -14,6 +14,7 @@ const PaymentForm = ({ data }) => {
         <input
           type="date"
           name="invoiceDate"
+          defaultValue={data?.createdAt}
           id="Invoice Date"
           className="select-field buttonsdate text-light3"
         />

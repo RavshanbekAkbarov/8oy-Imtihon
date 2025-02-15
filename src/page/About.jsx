@@ -45,11 +45,9 @@ function About() {
           <div className="flex justify-between items-center list-a mb-6 rounded-lg px-8 py-5">
             <div className="flex items-center gap-4">
               <h3 className="text-[14px] text-light3 font-normal">Status</h3>
-              <StatusBadge status={data.status} />
+              <StatusBadge status={data?.status} />
             </div>
-            <div>
-              <InvoiceActions />
-            </div>
+            <InvoiceActions />
           </div>
           <div className="p-8 rounded-lg list-a overflow-y-auto h-[460px]">
             <div className="flex justify-between">
@@ -120,7 +118,6 @@ function About() {
             </div>
           </div>
         </div>
-        <EditInvoice />
       </div>
     </div>
   );
