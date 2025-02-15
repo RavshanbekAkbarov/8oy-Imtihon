@@ -1,4 +1,4 @@
-function DeleteModal({ isOpen, onClose, onConfirm, invoiceId }) {
+function DeleteModal({ isOpen, onClose, onClick, invoiceId }) {
   if (!isOpen) return null;
 
   return (
@@ -19,7 +19,7 @@ function DeleteModal({ isOpen, onClose, onConfirm, invoiceId }) {
           </button>
           <button
             className="px-4 py-2 text-white bg-red-500 rounded-2xl"
-            onClick={onConfirm}
+            onClick={onClick}
           >
             Delete
           </button>

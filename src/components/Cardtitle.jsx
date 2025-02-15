@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import StatusBadge from "./StatusBadge";
 import { useEffect, useState } from "react";
 
-function Cardtitle() {
+function Cardtitle({filteredData}) {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState();
   useEffect(() => {
@@ -25,7 +25,7 @@ function Cardtitle() {
 
   return (
     <div className="">
-      {data?.map((item) => (
+      {filteredData.map((item) => (
         <Link
           to={`/about/${item.id}`}
           key={item.id}

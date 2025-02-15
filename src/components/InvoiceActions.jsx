@@ -59,7 +59,7 @@ const InvoiceActions = () => {
       </button>
       <button
         className="bg-primary px-6 py-4 rounded-[40px]"
-        onConfirm={() => {
+        onClick={() => {
           setIsModalOpen(false);
           handleDelete();
         }}
@@ -69,7 +69,7 @@ const InvoiceActions = () => {
       <DeleteModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        onConfirm={() => {
+        onClick={() => {
           setIsModalOpen(false);
           handleDelete();
         }}
