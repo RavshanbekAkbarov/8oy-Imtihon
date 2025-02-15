@@ -67,7 +67,7 @@ function EditInvoice() {
       if (!response.ok) {
         throw new Error("Ma'lumotni yangilashda xatolik!");
       }
-      handleReload();
+        handleReload();
     } catch (error) {
       console.error(error);
       alert("Xatolik yuz berdi!");
