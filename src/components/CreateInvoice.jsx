@@ -58,12 +58,6 @@ function CreateInvoice() {
   const removeItem = (index) => {
     setItems(items.filter((_, i) => i !== index));
   };
-  const handleItemChange = (index, field, value) => {
-    const newItems = [...items];
-    newItems[index][field] = Number(value);
-    newItems[index].total = newItems[index].qty * newItems[index].price;
-    setItems(newItems);
-  };
 
   const handleReload = () => {
     window.location.reload();
@@ -225,7 +219,7 @@ function CreateInvoice() {
               Item List
             </h3>
 
-            <div className="grid grid-flow-col text-light2 font-semibold mb-2 text-sm">
+            <div className="grid grid-flow-col grid-cols-4 text-light2 font-semibold mb-2 text-sm">
               <span className="text-left">Item Name</span>
               <span className="text-end">Qty.</span>
               <span className="text-center">Price</span>
@@ -241,35 +235,24 @@ function CreateInvoice() {
                   type="text"
                   name="itemName"
                   placeholder="Item Name"
-                  value={item.name}
-                  onChange={(e) =>
-                    handleItemChange(index, "name", e.target.value)
-                  }
-                  className="select-field buttons"
+                  className="  p-3 rounded-md  font-bold border border-[#52566c] bg-inherit cursor-pointer buttons"
                 />
 
                 <input
                   type="number"
                   name="qty"
                   placeholder="1"
-                  value={item.qty}
                   min="1"
-                  onChange={(e) =>
-                    handleItemChange(index, "qty", e.target.value)
-                  }
                   className="w-[70px] text-center p-3 rounded-sm buttons font-bold border border-[#52566c] bg-inherit cursor-pointer"
                 />
                 <input
                   type="number"
                   name="price"
-                  value={item.price}
-                  min="1"
-                  onChange={(e) =>
-                    handleItemChange(index, "price", e.target.value)
-                  }
+                  placeholder="0"
+                  min="0"
                   className="w-[125px] text-center p-3 rounded-sm buttons font-bold border border-[#52566c] bg-inherit cursor-pointer"
                 />
-                <span className="text-light2 w-[120px] font-bold text-base text-right">
+                <span className="text-light2 ml-6 font-bold text-base text-right">
                   £{item.total}
                 </span>
                 <button

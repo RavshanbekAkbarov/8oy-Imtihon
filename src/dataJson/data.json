@@ -228,38 +228,6 @@
         }
       ],
       "total": 3102.04
-    },
-    {
-      "id": "f94e",
-      "createdAt": "2025-02-15",
-      "paymentDue": "2025-02-12",
-      "description": "ewfewfereggfresd",
-      "paymentTerms": null,
-      "clientName": "rgettferfe",
-      "clientEmail": "jfjerhjfbwjehb@gmail.com",
-      "status": "draft",
-      "senderAddress": {},
-      "clientAddress": {
-        "street": "wertyhgfvc",
-        "city": "london",
-        "postCode": "dfrefergre",
-        "country": "Nafl namozi tartibi"
-      },
-      "items": [
-        {
-          "name": "NaN",
-          "quantity": 2,
-          "price": 120,
-          "total": 240
-        },
-        {
-          "name": "NaN",
-          "quantity": 1,
-          "price": null,
-          "total": null
-        }
-      ],
-      "total": null
     }
   ]
 }

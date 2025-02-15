@@ -32,7 +32,7 @@ function Cardtitle() {
           className="flex justify-between w-full"
         >
           <div className="flex w-full items-center justify-between text-start p-5 mb-2 rounded-lg shadow-md cursor-pointer list-a ">
-            <div className=" flex items-center gap-12">
+            <div className=" flex items-center  text-sm  gap-12">
               <span className="font-bold   ">#{item.id}</span>
               <span className="flex gap-1  ">
                 <p> Due </p>
@@ -42,10 +42,10 @@ function Cardtitle() {
                   year: "numeric",
                 })}
               </span>
-              <span className="  ">{item.clientName}</span>
+              <span className="   ">{item.clientName}</span>
             </div>
             <div className="flex items-center space-x-4">
-              <span className="font-bold  mr-5">£{item.total}</span>
+              <span className="font-bold  text-lg mr-5">£{item.total}</span>
               <StatusBadge status={item.status} />
 
               <span className="text-primary cursor-pointer text-xl">

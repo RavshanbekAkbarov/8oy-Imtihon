@@ -10,7 +10,6 @@ import { getOneData } from "../hooks/useFetch";
 function About() {
   const navigate = useNavigate();
   const { id } = useParams();
-  const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
 
@@ -49,7 +48,7 @@ function About() {
               <StatusBadge status={data.status} />
             </div>
             <div>
-              <InvoiceActions setIsOpen={setIsOpen} />
+              <InvoiceActions  />
             </div>
           </div>
           <div className="p-8 rounded-lg list-a overflow-y-auto h-[460px]">
@@ -121,7 +120,7 @@ function About() {
             </div>
           </div>
         </div>
-        <EditInvoice isOpen={isOpen} setIsOpen={setIsOpen} />
+        <EditInvoice />
       </div>
     </div>
   );

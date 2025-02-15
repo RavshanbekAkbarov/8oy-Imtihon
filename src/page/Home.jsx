@@ -3,9 +3,9 @@ import Cardtitle from "../components/Cardtitle";
 import CreateInvoice from "../components/CreateInvoice";
 import { useEffect, useState } from "react";
 import { getAllData } from "../hooks/useFetch";
+import NotFound from "../components/NotFound";
 
 function Home() {
-  const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -51,9 +51,9 @@ function Home() {
       </div>
 
       <div className="max-h-[500px] overflow-y-auto space-y-4 ">
-        <Cardtitle />
+        {data.length > 0 ? <Cardtitle /> : <NotFound />}
       </div>
-      <CreateInvoice isOpen={isOpen} setIsOpen={setIsOpen} />
+      <CreateInvoice />
     </div>
   );
 }
