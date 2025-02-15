@@ -260,7 +260,7 @@ function CreateInvoice() {
                   className="w-[70px] text-center p-3 rounded-sm buttons font-bold border border-[#52566c] bg-inherit cursor-pointer"
                 />
                 <input
-                  type="text"
+                  type="number"
                   name="price"
                   placeholder="0"
                   value={item.price}
