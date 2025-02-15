@@ -48,10 +48,10 @@ function About() {
               <StatusBadge status={data.status} />
             </div>
             <div>
-              <InvoiceActions  />
+              <InvoiceActions />
             </div>
           </div>
-          <div className="p-8 rounded-lg list-a overflow-y-auto h-[520px]">
+          <div className="p-8 rounded-lg list-a overflow-y-auto h-[460px]">
             <div className="flex justify-between">
               <div>
                 <h2 className="text-lg font-bold mb-2">
