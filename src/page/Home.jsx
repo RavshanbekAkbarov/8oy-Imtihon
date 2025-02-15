@@ -101,7 +101,7 @@ function Home() {
         </div>
       </div>
 
-      <div className="max-h-[500px] overflow-y-auto space-y-4">
+      <div className="max-h-[490px] overflow-y-auto space-y-4">
         {filteredData.length > 0 ? (
           <Cardtitle filteredData={filteredData} />
         ) : (
