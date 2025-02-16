@@ -4,6 +4,7 @@ import FormInput from "./FormInput";
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getOneData } from "../hooks/useFetch";
+
 function EditInvoice() {
   const { id } = useParams();
   const drawerRef = useRef(null);
@@ -23,7 +24,7 @@ function EditInvoice() {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, [id]);
 
   if (loading) {
     return <p>loading...</p>;
@@ -75,15 +76,31 @@ function EditInvoice() {
   };
 
   const addNewItem = () => {
-    setItems([...items, { name: "", qty: 1, price: 0 }]);
+    setItems([
+      ...items,
+      { id: Date.now(), name: "", qty: 1, price: 0, total: 0 },
+    ]);
   };
 
   const removeItem = (index) => {
-    const newItems = [...items];
-    newItems.splice(index, 1);
-    setItems(newItems);
+    setItems(items.filter((_, i) => i !== index));
   };
 
+  const updateItem = (id, field, value) => {
+    setItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === id
+          ? {
+              ...item,
+              [field]: value,
+              total:
+                (field === "qty" ? value : item.qty) *
+                (field === "price" ? value : item.price),
+            }
+          : item
+      )
+    );
+  };
   return (
     <div>
       <div className="drawer">
@@ -103,7 +120,7 @@ function EditInvoice() {
         </div>
         <form
           ref={formRef}
-          className="drawer-side  ml-24 h-full  "
+          className="drawer-side    ml-24 h-full  "
           onSubmit={updateInvoice}
         >
           <label
@@ -112,7 +129,7 @@ function EditInvoice() {
             className="drawer-overlay"
           ></label>
           <div>
-            <ul className="menu w-[720px] list-a text-base-content h-full  ">
+            <ul className="menu w-[720px]  amount list-a text-base-content h-full  ">
               <div className="  p-14 ">
                 <h1 className="text-2xl font-bold mb-12 ">
                   Edit
@@ -223,24 +240,34 @@ function EditInvoice() {
                         name="itemName"
                         defaultValue={item.name}
                         className="  select-field buttons"
+                        onChange={(e) => {
+                          updateItem(item.id, "name", e.target.value);
+                        }}
                       />
 
                       <input
                         type="number"
-                        name="quantity"
+                        name="qty"
                         defaultValue={item.qty}
                         className=" w-[70px] text-center p-3 rounded-sm buttons  font-bold border border-[#52566c] bg-inherit cursor-pointer"
+                        onChange={(e) => {
+                          updateItem(item.id, "qty", Number(e.target.value));
+                        }}
                       />
 
                       <input
-                        type="text"
+                        type="number"
                         name="price"
-                        defaultValue={item.price.toFixed(2)}
+                        placeholder="0"
+                        defaultValue={item.price}
                         className=" w-[125px] text-center p-3 rounded-sm  buttons  font-bold border border-[#52566c] bg-inherit cursor-pointer"
+                        onChange={(e) => {
+                          updateItem(item.id, "price", Number(e.target.value));
+                        }}
                       />
 
                       <span className="text-light2  w-[200px] font-bold text-base  text-right">
-                        £{item.total}
+                        £ {item.qty * item.price}
                       </span>
 
                       <button className="text-gray-400 text-lg hover:text-red-500 transition">

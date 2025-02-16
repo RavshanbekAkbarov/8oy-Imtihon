@@ -5,7 +5,7 @@ function FormInput({ name, type, placeholder, inputName, defaultValue }) {
       <input
         id={name}
         type={type}
-        className="select-field buttons w-full"
+        className="select-field border-red-500 buttons w-full"
         placeholder={placeholder}
         defaultValue={defaultValue}
         name={name}

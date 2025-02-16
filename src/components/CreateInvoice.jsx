@@ -5,6 +5,8 @@ import { Form, useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { objectCreater } from "../utils/object-creater";
 import { getOneData } from "../hooks/useFetch";
+import { validate } from "../utils/validate";
+import { toast } from "react-toastify";
 
 function CreateInvoice() {
   const { id } = useParams();
@@ -40,24 +42,6 @@ function CreateInvoice() {
 
   if (loading) return <p> Loading....</p>;
   if (error) return <p>{error}</p>;
-
-  const handleDiscard = () => {
-    if (drawerRef.current) {
-      setTimeout(() => {
-        drawerRef.current.checked = false;
-      }, 0);
-    }
-    if (formRef.current) formRef.current.reset();
-    setItems([{ name: "", qty: 1, price: 0, total: 0 }]);
-  };
-
-  const addNewItem = () => {
-    setItems([...items, { name: "", qty: 1, price: 0, total: 0 }]);
-  };
-
-  const removeItem = (index) => {
-    setItems(items.filter((_, i) => i !== index));
-  };
 
   const handleReload = () => {
     window.location.reload();
@@ -98,6 +82,16 @@ function CreateInvoice() {
       items,
     });
 
+    //Validate
+    const validateerrors = validate(invoiceData);
+    if (!validateerrors) {
+    } else {
+      const { message, target } = validateerrors;
+      toast.error(message);
+      e.target[target]?.focus();
+      return;
+    }
+
     try {
       const response = await fetch("http://localhost:3000/data", {
         method: "POST",
@@ -116,6 +110,43 @@ function CreateInvoice() {
       console.error("Xatolik:", error);
     }
   }
+
+  const handleDiscard = () => {
+    if (drawerRef.current) {
+      setTimeout(() => {
+        drawerRef.current.checked = false;
+      }, 0);
+    }
+    if (formRef.current) formRef.current.reset();
+    setItems([{ name: "", qty: 1, price: 0, total: 0 }]);
+  };
+
+  const addNewItem = () => {
+    setItems([...items, { id: Date.now(), name: "", qty: 1, price: 0 }]);
+  };
+
+  const removeItem = (index) => {
+    setItems(items.filter((_, i) => i !== index));
+  };
+
+  const updateItem = (id, field, value) => {
+    setItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === id
+          ? {
+              ...item,
+              [field]: value,
+              total:
+                field === "qty" || field === "price"
+                  ? field === "qty"
+                    ? value * item.price
+                    : item.qty * value
+                  : item.total,
+            }
+          : item
+      )
+    );
+  };
 
   return (
     <div className="drawer">
@@ -234,8 +265,11 @@ function CreateInvoice() {
                 <input
                   type="text"
                   name="itemName"
-                  placeholder="Item Name"
-                  className="  p-3 rounded-md  font-bold border border-[#52566c] bg-inherit cursor-pointer buttons"
+                  placeholder="Banner Design"
+                  className="  select-field buttons"
+                  onChange={(e) => {
+                    updateItem(item.id, "name", e.target.value);
+                  }}
                 />
 
                 <input
@@ -244,6 +278,9 @@ function CreateInvoice() {
                   placeholder="1"
                   min="1"
                   className="w-[70px] text-center p-3 rounded-sm buttons font-bold border border-[#52566c] bg-inherit cursor-pointer"
+                  onChange={(e) => {
+                    updateItem(item.id, "qty", Number(e.target.value));
+                  }}
                 />
                 <input
                   type="number"
@@ -251,9 +288,12 @@ function CreateInvoice() {
                   placeholder="0"
                   min="0"
                   className="w-[125px] text-center p-3 rounded-sm buttons font-bold border border-[#52566c] bg-inherit cursor-pointer"
+                  onChange={(e) => {
+                    updateItem(item.id, "price", Number(e.target.value));
+                  }}
                 />
-                <span className="text-light2 ml-6 font-bold text-base text-right">
-                  £{item.total}
+                <span className="text-light2 w-[200px]  ml-6 font-bold text-base text-right">
+                  £ {item.qty * item.price}
                 </span>
                 <button
                   className="text-gray-400 text-lg hover:text-red-500 transition"
