@@ -45,7 +45,9 @@ function Cardtitle({ filteredData }) {
               <span className="">{item.clientName}</span>
             </div>
             <div className=" md:flex md:items-center lg:flex lg:items-center ">
-              <span className=" mb-5 font-bold   text-lg mr-5">£{item.total}</span>
+              <span className=" mb-5 font-bold   text-lg mr-5">
+                £{item.total}
+              </span>
               <StatusBadge status={item.status} />
 
               <span className="text-primary cursor-pointer text-xl">
