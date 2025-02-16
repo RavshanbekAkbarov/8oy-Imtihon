@@ -179,16 +179,16 @@ function CreateInvoice() {
               placeholder="alexgrim@mail.com"
             />
             <FormInput
+              name="streetAddress"
               type="text"
-              name="street"
               inputName="Street Address"
               placeholder="84 Church Way"
             />
 
             <div className="grid grid-cols-3 gap-4 mb-4">
               <FormInput
-                type="text"
                 name="city"
+                type="text"
                 inputName="City"
                 placeholder="Bradford"
               />
@@ -200,7 +200,7 @@ function CreateInvoice() {
               />
               <FormInput
                 type="text"
-                name="clientCountry"
+                name="country"
                 inputName="Country"
                 placeholder="United Kingdom"
               />

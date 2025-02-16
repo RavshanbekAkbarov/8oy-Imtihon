@@ -67,7 +67,7 @@ function EditInvoice() {
       if (!response.ok) {
         throw new Error("Ma'lumotni yangilashda xatolik!");
       }
-        handleReload();
+      handleReload();
     } catch (error) {
       console.error(error);
       alert("Xatolik yuz berdi!");
@@ -228,7 +228,7 @@ function EditInvoice() {
                       <input
                         type="number"
                         name="quantity"
-                        defaultValue={item.quantity}
+                        defaultValue={item.qty}
                         className=" w-[70px] text-center p-3 rounded-sm buttons  font-bold border border-[#52566c] bg-inherit cursor-pointer"
                       />
 
