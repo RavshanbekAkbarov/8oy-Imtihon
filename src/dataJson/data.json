@@ -36,7 +36,7 @@
       "createdAt": "2021-08-21",
       "paymentDue": "2021-09-20",
       "description": "Graphic Design",
-      "paymentTerms": 30,
+      "paymentTerms": "Net 1 Day",
       "clientName": "Alex Grim",
       "clientEmail": "alexgrim@mail.com",
       "status": "pending",
@@ -64,6 +64,13 @@
           "quantity": 2,
           "price": 200,
           "total": 400
+        },
+        {
+          "id": 1739708679282,
+          "name": "cdtheaehtd",
+          "quantity": 5,
+          "price": 25,
+          "total": 125
         }
       ],
       "total": 556
@@ -203,10 +210,10 @@
       "createdAt": "2021-11-05",
       "paymentDue": "2021-11-12",
       "description": "Logo Re-design",
-      "paymentTerms": 7,
-      "clientName": "Anita Wainwright",
+      "paymentTerms": "Net 1 Day",
+      "clientName": " Wainwright",
       "clientEmail": "",
-      "status": "draft",
+      "status": "paid",
       "senderAddress": {
         "street": "19 Union Terrace",
         "city": "London",
@@ -222,12 +229,131 @@
       "items": [
         {
           "name": "Logo Re-design",
-          "quantity": 1,
+          "quantity": 2,
           "price": 3102.04,
-          "total": 3102.04
+          "total": 6204.08
+        },
+        {
+          "id": 1739701688981,
+          "name": "dfghjkjhgfd",
+          "quantity": 1,
+          "price": 5,
+          "total": 5
         }
       ],
       "total": 3102.04
+    },
+    {
+      "id": "d5f9",
+      "createdAt": "2025-02-16",
+      "paymentDue": "2025-02-12",
+      "description": "dsfghjiuytre",
+      "paymentTerms": null,
+      "clientName": "grgtrg",
+      "clientEmail": "ravshanbek606@gmail.com",
+      "status": "pending",
+      "senderAddress": {
+        "street": "defrgthyju",
+        "city": " fvgrgr",
+        "postCode": " efregrg",
+        "country": "refgregf"
+      },
+      "clientAddress": {
+        "street": "ggregr",
+        "city": "rtgrtre",
+        "postCode": "regreter",
+        "country": "egretr"
+      },
+      "items": [
+        {
+          "name": "asdfghjkhgfd",
+          "quantity": 7,
+          "price": 13,
+          "total": 91
+        }
+      ],
+      "total": 91
+    },
+    {
+      "id": "ef43",
+      "createdAt": "2025-02-16",
+      "paymentDue": "2025-01-28",
+      "description": "fgrthyjuijyhtgre",
+      "paymentTerms": "Net 30 Days",
+      "clientName": "xcvbnm34",
+      "clientEmail": "hgfdrtyuik@gamil.com",
+      "status": "draft",
+      "senderAddress": {
+        "street": "dfghj",
+        "city": "hgfdfghj",
+        "postCode": "ertyui34",
+        "country": "hgfdfgh"
+      },
+      "clientAddress": {
+        "street": "2345gh",
+        "city": "dfg34",
+        "postCode": "123231",
+        "country": "dfghjk"
+      },
+      "items": [
+        {
+          "name": "rtyutrewerftyuiy",
+          "quantity": 9,
+          "price": 11,
+          "total": 99
+        },
+        {
+          "name": "rtewrty",
+          "quantity": 22,
+          "price": 7,
+          "total": 154
+        },
+        {
+          "id": 1739709517980,
+          "name": "ghjhgfdsa",
+          "quantity": 6,
+          "price": 15,
+          "total": 90
+        }
+      ],
+      "total": 253
+    },
+    {
+      "id": "7d3a",
+      "createdAt": "2025-02-16",
+      "paymentDue": "2025-02-13",
+      "description": "dsfghjiuytre",
+      "paymentTerms": "Net 30 Days",
+      "clientName": "hgfdfghj",
+      "clientEmail": "hgfdrtyuik@gamil.com",
+      "status": "pending",
+      "senderAddress": {
+        "street": "vbnjklkjhg34",
+        "city": "hgfdfghj",
+        "postCode": "ertyui34",
+        "country": "hgfdfgh"
+      },
+      "clientAddress": {
+        "street": "2345gh",
+        "city": "dfg34",
+        "postCode": "123231",
+        "country": "dfv34"
+      },
+      "items": [
+        {
+          "name": "ertyhuj",
+          "quantity": 5,
+          "price": 11,
+          "total": 55
+        },
+        {
+          "name": "rewedfgrerf",
+          "quantity": 5,
+          "price": 11,
+          "total": 55
+        }
+      ],
+      "total": 50
     }
   ]
 }

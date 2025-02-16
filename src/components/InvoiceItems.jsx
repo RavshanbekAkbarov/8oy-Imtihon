@@ -14,8 +14,8 @@ const InvoiceItems = ({ items }) => {
           className="grid grid-flow-col grid-cols-4 text-base font-bold  py-3 border-b last:border-none"
         >
           <span className="text-left ">{item.name}</span>
-          <span className="text-end text-light2 ">{item?.qty}</span>
-          <span className="text-end text-light2">£{item.price}</span>
+          <span className="text-end text-light2 ">{item?.quantity}</span>
+          <span className="text-end text-light2">{item.price}</span>
           <span className="text-right">£{item.total}</span>
         </div>
       ))}

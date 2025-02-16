@@ -33,7 +33,7 @@ function About() {
 
   return (
     <div>
-      <div className="w-[770px] align-elements">
+      <div className="max-w-[770px] align-elements">
         <span
           className="flex items-center cursor-pointer gap-5 font-bold mb-8"
           onClick={() => navigate("/")}

@@ -78,7 +78,7 @@ function EditInvoice() {
   const addNewItem = () => {
     setItems([
       ...items,
-      { id: Date.now(), name: "", qty: 1, price: 0, total: 0 },
+      { id: Date.now(), name: "", quantity: 1, price: 0, total: 0 },
     ]);
   };
 
@@ -94,13 +94,14 @@ function EditInvoice() {
               ...item,
               [field]: value,
               total:
-                (field === "qty" ? value : item.qty) *
+                (field === "quantity" ? value : item.quantity) *
                 (field === "price" ? value : item.price),
             }
           : item
       )
     );
   };
+
   return (
     <div>
       <div className="drawer">
@@ -120,7 +121,7 @@ function EditInvoice() {
         </div>
         <form
           ref={formRef}
-          className="drawer-side    ml-24 h-full  "
+          className="drawer-side  h-full lg:ml-24  "
           onSubmit={updateInvoice}
         >
           <label
@@ -129,7 +130,7 @@ function EditInvoice() {
             className="drawer-overlay"
           ></label>
           <div>
-            <ul className="menu w-[720px]  amount list-a text-base-content h-full  ">
+            <ul className="menu max-w-[650px]  amount list-a text-base-content h-full  ">
               <div className="  p-14 ">
                 <h1 className="text-2xl font-bold mb-12 ">
                   Edit
@@ -225,52 +226,61 @@ function EditInvoice() {
 
                   <div className="grid grid-flow-col text-light2 font-bold mb-2 text-sm">
                     <span className="text-left">Item Name</span>
-                    <span className="text-end">Qty.</span>
-                    <span className="text-center">Price</span>
+                    <span className="text-center">Qty.</span>
+                    <span className="text-left">Price</span>
                     <span className="text-center">Total</span>
                   </div>
 
                   {items.map((item, index) => (
                     <div
                       key={index}
-                      className="flex items-center gap-4 mb-5  rounded-md w-full "
+                      className="flex items-center justify-between "
                     >
-                      <input
-                        type="text"
-                        name="itemName"
-                        defaultValue={item.name}
-                        className="  select-field buttons"
-                        onChange={(e) => {
-                          updateItem(item.id, "name", e.target.value);
-                        }}
-                      />
+                      <div className="flex items-center gap-4 mb-5  rounded-md w-full ">
+                        <input
+                          type="text"
+                          name="itemName"
+                          defaultValue={item.name}
+                          className=" max-w-[175px]   p-3 rounded-md  font-bold border border-[#52566c] bg-inherit cursor-pointer buttons"
+                          onChange={(e) => {
+                            updateItem(item.id, "name", e.target.value);
+                          }}
+                        />
 
-                      <input
-                        type="number"
-                        name="qty"
-                        defaultValue={item.qty}
-                        className=" w-[70px] text-center p-3 rounded-sm buttons  font-bold border border-[#52566c] bg-inherit cursor-pointer"
-                        onChange={(e) => {
-                          updateItem(item.id, "qty", Number(e.target.value));
-                        }}
-                      />
+                        <input
+                          type="number"
+                          name="quantity"
+                          defaultValue={item.quantity}
+                          className=" max-w-[70px] text-center p-3 rounded-sm buttons  font-bold border border-[#52566c] bg-inherit cursor-pointer"
+                          onChange={(e) => {
+                            updateItem(
+                              item.id,
+                              "quantity",
+                              Number(e.target.value)
+                            );
+                          }}
+                        />
 
-                      <input
-                        type="number"
-                        name="price"
-                        placeholder="0"
-                        defaultValue={item.price}
-                        className=" w-[125px] text-center p-3 rounded-sm  buttons  font-bold border border-[#52566c] bg-inherit cursor-pointer"
-                        onChange={(e) => {
-                          updateItem(item.id, "price", Number(e.target.value));
-                        }}
-                      />
+                        <input
+                          type="number"
+                          name="price"
+                          placeholder="0"
+                          defaultValue={item.price}
+                          className=" max-w-[125px] text-center p-3 rounded-sm  buttons  font-bold border border-[#52566c] bg-inherit cursor-pointer"
+                          onChange={(e) => {
+                            updateItem(
+                              item.id,
+                              "price",
+                              Number(e.target.value)
+                            );
+                          }}
+                        />
+                        <span className="text-light2  max-w-[200px] font-bold text-base  text-right">
+                          £ {item.quantity * item.price}
+                        </span>
+                      </div>
 
-                      <span className="text-light2  w-[200px] font-bold text-base  text-right">
-                        £ {item.qty * item.price}
-                      </span>
-
-                      <button className="text-gray-400 text-lg hover:text-red-500 transition">
+                      <button className="text-gray-400  mb-5 text-lg hover:text-red-500 transition">
                         <FaTrash onClick={() => removeItem(index)} />
                       </button>
                     </div>

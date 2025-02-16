@@ -12,7 +12,7 @@ body {
 }
 
 .select-field {
-  @apply w-full p-3 rounded-md  font-bold border border-[#52566c] bg-inherit cursor-pointer;
+  @apply p-3 rounded-md  font-bold border border-[#52566c] bg-inherit cursor-pointer;
 }
 
 [data-theme="cupcake"] {
@@ -35,6 +35,9 @@ body {
   .buttons-bottom {
     background-color: #ffffff;
   }
+  .colors {
+    color: #252945;
+  }
 
   .label {
     @apply block font-normal text-light3 text-sm mb-1;
@@ -45,10 +48,6 @@ body {
   .list-a {
     background-color: #1e2139;
   }
-  /* .list-a:hover {
-    background-color: #1e2139;
-  } */
-
   .amount {
     background-color: #131523;
   }
@@ -67,6 +66,9 @@ body {
   }
   .buttons-bottom {
     background-color: #15182a;
+  }
+  .colors {
+    color: #ffffff;
   }
 
   .label {

@@ -13,7 +13,7 @@ const StatusBadge = ({ status }) => {
 
   return (
     <span
-      className={`font-semibold px-3 py-2 w-[113px] rounded-md flex items-center justify-center ${
+      className={`font-semibold px-3 py-2 max-w-[113px] rounded-md flex items-center justify-center ${
         statusStyles[status.toLowerCase()] || "bg-gray-700"
       }`}
     >

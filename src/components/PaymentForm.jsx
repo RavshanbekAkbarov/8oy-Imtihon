@@ -16,7 +16,7 @@ const PaymentForm = ({ data }) => {
           name="invoiceDate"
           defaultValue={data?.createdAt}
           id="Invoice Date"
-          className="select-field buttonsdate text-light3"
+          className="  w-full p-3 rounded-md  font-bold border border-[#52566c] bg-inherit cursor-pointer buttonsdate text-light3"
         />
       </div>
 

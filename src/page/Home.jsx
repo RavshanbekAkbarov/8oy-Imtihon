@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { getAllData } from "../hooks/useFetch";
 import NotFound from "../components/NotFound";
 import { RiArrowDropDownLine } from "react-icons/ri";
+import EditInvoice from "../components/EditInvoice";
 
 function Home() {
   const [loading, setLoading] = useState(false);
@@ -52,7 +53,7 @@ function Home() {
   };
 
   return (
-    <div className="flex flex-col mx-auto mt-14 align-elements">
+    <div className="flex flex-col  mt-[150px]   align-elements lg:mt-14">
       <div className="flex justify-between items-center mb-[55px]">
         <div>
           <h1 className="text-[32px] font-bold">Invoices</h1>
@@ -70,11 +71,11 @@ function Home() {
               className="flex items-center cursor-pointer"
             >
               <h2>Filter by status</h2>
-              <RiArrowDropDownLine className="w-[40px] h-[20px]" />
+              <RiArrowDropDownLine className="max-w-[40px] max-h-[20px]" />
             </div>
             <ul
               tabIndex={0}
-              className="dropdown-content menu bg-base-100 rounded-box  w-52 p-2 shadow"
+              className="dropdown-content menu bg-base-100 rounded-box  max-w-52 p-2 shadow"
             >
               {uniqueStatus.map((status, index) => (
                 <li key={index}>
@@ -91,13 +92,7 @@ function Home() {
               ))}
             </ul>
           </div>
-          <label
-            htmlFor="edit-drawer"
-            className="bg-primary text-white font-semibold cursor-pointer drawer-button text-[14px] flex items-center px-4 py-3 rounded-full gap-3 shadow-md"
-          >
-            <FaCirclePlus className="text-3xl" />
-            New Invoice
-          </label>
+          <CreateInvoice />
         </div>
       </div>
 
@@ -108,9 +103,11 @@ function Home() {
           <NotFound />
         )}
       </div>
-      <CreateInvoice />
     </div>
   );
 }
 
 export default Home;
+<div className="bg-primary text-white font-semibold cursor-pointer drawer-button text-[14px] flex items-center px-4 py-3 rounded-full gap-3 shadow-md">
+  New Invoice
+</div>;
