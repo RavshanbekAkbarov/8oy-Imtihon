@@ -130,7 +130,7 @@ function EditInvoice() {
             className="drawer-overlay"
           ></label>
           <div>
-            <ul className="menu max-w-[650px]  amount list-a text-base-content h-full  ">
+            <ul className="menu max-w-[670px] mt-[103px]  amount list-a text-base-content h-full lg:mt-0 rounded-tr-2xl  ">
               <div className="  p-14 ">
                 <h1 className="text-2xl font-bold mb-12 ">
                   Edit
@@ -296,8 +296,8 @@ function EditInvoice() {
                 </div>
               </div>
             </ul>
-            <div className="sticky bottom-0 left-0  p-8 buttons-bottom    rounded-t-4xl  ">
-              <div className="flex  justify-end gap-3 items-center font-bold text-sm">
+            <div className="sticky bottom-0 rounded-br-2xl left-0  p-8 buttons-bottom      ">
+              <div className="flex rounded-t-2xl justify-end gap-3 items-center font-bold text-sm">
                 <label
                   className="bg-light1 title  text-light2 px-6 py-4 rounded-3xl cursor-pointer "
                   htmlFor="my-drawer"

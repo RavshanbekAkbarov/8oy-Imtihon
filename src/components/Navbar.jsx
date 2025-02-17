@@ -18,7 +18,7 @@ const Navbar = () => {
   }, [theme]);
 
   return (
-    <div className="fixed top-0 bg-dark2 z-50 flex justify-between h-[103px] w-full lg:flex  lg:flex-col lg:h-screen lg:w-[103px] lg:rounded-br-3xl lg:roundwd-tr-3xl ">
+    <div className="fixed top-0 bg-dark2 z-50 flex justify-between h-[103px] w-full lg:flex  lg:flex-col lg:h-screen lg:w-[103px] lg:rounded-r-3xl lg:roundwd-tr-3xl ">
       <img className="w-[103px] h-[103px]" src="/Group 9.png" alt="" />
 
       <div className="flex items-center gap-8  lg:flex lg:flex-col lg:gap-8 lg:items-center ">
